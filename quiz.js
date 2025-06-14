@@ -9,8 +9,14 @@ function checkAnswer() {
     // Get the feedback element
     const feedback = document.getElementById("feedback");
     
+    // Check if an answer was selected
+    if (!selectedChoice) {
+        feedback.textContent = "Please select an answer!";
+        return;
+    }
+    
     // Get the user's answer
-    const userAnswer = selectedChoice ? selectedChoice.value : null;
+    const userAnswer = selectedChoice.value;
     
     // Compare the answers
     if (userAnswer === correctAnswer) {
@@ -25,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Get the submit button
     const submitButton = document.getElementById("submit-answer");
     
-    // Add click event listener
-    submitButton.addEventListener("click", checkAnswer);
+    // Add click event listener to the submit button
+    if (submitButton) {
+        submitButton.addEventListener("click", checkAnswer);
+    }
 });
